@@ -8,18 +8,38 @@ class Measurement {
 	@Id
 	private String _id;
 
+	private String stationId;
+	private String measurementDate;
 	private long measurementId;
-
-	private float humidity;
 	private float temperature;
+	private float humidity;
 
 	public Measurement() {
 	}
 
-	public Measurement(long measurementId, float humidity, float temperature) {
+	public Measurement(String stationId, String measurementDate, long measurementId, float temperature,
+			float humidity) {
+		this.stationId = stationId;
+		this.measurementDate = measurementDate;
 		this.measurementId = measurementId;
-		this.humidity = humidity;
 		this.temperature = temperature;
+		this.humidity = humidity;
+	}
+
+	public String getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(String stationId) {
+		this.stationId = stationId;
+	}
+
+	public String getMeasurementDate() {
+		return measurementDate;
+	}
+
+	public void setMeasurementDate(String measurementDate) {
+		this.measurementDate = measurementDate;
 	}
 
 	public String get_id() {
@@ -55,7 +75,8 @@ class Measurement {
 	}
 
 	public MeasurementDTO translateToDto() {
-		MeasurementDTO dto = new MeasurementDTO(getMeasurementId(), getTemperature(), getHumidity());
+		MeasurementDTO dto = new MeasurementDTO(getStationId(), getMeasurementDate(), getMeasurementId(),
+				getTemperature(), getHumidity());
 		return dto;
 	}
 

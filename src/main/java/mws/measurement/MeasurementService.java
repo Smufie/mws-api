@@ -1,6 +1,10 @@
 package mws.measurement;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +27,15 @@ class MeasurementService {
 	}
 
 	public MeasurementDTO saveMeasurment(MeasurementDTO newMeteoData) {
-		Measurement meteoData = new Measurement(newMeteoData.getMeasurementId(), newMeteoData.getHumidity(),
-				newMeteoData.getTemperature());
-		repository.save(meteoData);
+		String datePattern = "yyyy-MM-dd HH:mm:ss";
+		DateFormat format = new SimpleDateFormat(datePattern);
+		Date date = Calendar.getInstance().getTime();
+		String measurementDate = format.format(date);
 
+		Measurement meteoData = new Measurement(newMeteoData.getStationId(), measurementDate,
+				newMeteoData.getMeasurementId(), newMeteoData.getHumidity(), newMeteoData.getTemperature());
+		repository.save(meteoData);
+		newMeteoData.setMeasurementDate(measurementDate);
 		return newMeteoData;
 	}
 
@@ -45,5 +54,10 @@ class MeasurementService {
 			personsDto.add(entity.translateToDto());
 		});
 		return personsDto;
+	}
+
+	public List<MeasurementDTO> getAllMeasurmentsByDate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

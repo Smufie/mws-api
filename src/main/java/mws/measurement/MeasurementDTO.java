@@ -1,6 +1,9 @@
 package mws.measurement;
 
 public class MeasurementDTO {
+
+	private String stationId;
+	private String measurementDate;
 	private long measurementId;
 	private float temperature;
 	private float humidity;
@@ -9,11 +12,30 @@ public class MeasurementDTO {
 
 	}
 
-	public MeasurementDTO(long readingId, float temperature, float humidity) {
+	public MeasurementDTO(String stationId, String measurementDate, long measurementId, float temperature,
+			float humidity) {
 		super();
-		this.measurementId = readingId;
+		this.stationId = stationId;
+		this.measurementDate = measurementDate;
+		this.measurementId = measurementId;
 		this.temperature = temperature;
 		this.humidity = humidity;
+	}
+
+	public String getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(String stationId) {
+		this.stationId = stationId;
+	}
+
+	public String getMeasurementDate() {
+		return measurementDate;
+	}
+
+	public void setMeasurementDate(String measurementDate) {
+		this.measurementDate = measurementDate;
 	}
 
 	public long getMeasurementId() {

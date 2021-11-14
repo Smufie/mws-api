@@ -29,4 +29,9 @@ public class MeasurementController {
 	public ResponseEntity<List<MeasurementDTO>> getAllMeasurments() {
 		return ResponseEntity.ok(service.getAllMeasurments());
 	}
+
+	@GetMapping("/measurement/get/date")
+	public ResponseEntity<List<MeasurementDTO>> getMeasurmentsByDate() {
+		return ResponseEntity.ok(service.getAllMeasurmentsByDate());
+	}
 }

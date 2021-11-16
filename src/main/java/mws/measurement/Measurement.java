@@ -12,18 +12,14 @@ class Measurement {
 
 	private float humidity;
 	private float temperature;
-	private float pressure;
-	private float airQualityIndex;
 
 	public Measurement() {
 	}
 
-	public Measurement(long measurementId, float humidity, float temperature, float pressure, float airQualityIndex) {
+	public Measurement(long measurementId, float humidity, float temperature) {
 		this.measurementId = measurementId;
 		this.humidity = humidity;
 		this.temperature = temperature;
-		this.pressure = pressure;
-		this.airQualityIndex = airQualityIndex;
 	}
 
 	public String get_id() {
@@ -58,24 +54,8 @@ class Measurement {
 		this.temperature = temperature;
 	}
 
-	public float getPressure() {
-		return pressure;
-	}
-
-	public void setPressure(float pressure) {
-		this.pressure = pressure;
-	}
-
-	public float getAirQualityIndex() {
-		return airQualityIndex;
-	}
-
-	public void setAirQualityIndex(float airQualityIndex) {
-		this.airQualityIndex = airQualityIndex;
-	}
-
 	public MeasurementDTO translateToDto() {
-		MeasurementDTO dto = new MeasurementDTO(getMeasurementId(), getTemperature(), getHumidity(), getPressure(), getAirQualityIndex());
+		MeasurementDTO dto = new MeasurementDTO(getMeasurementId(), getTemperature(), getHumidity());
 		return dto;
 	}
 

@@ -24,7 +24,7 @@ class MeasurementService {
 
 	public MeasurementDTO saveMeasurment(MeasurementDTO newMeteoData) {
 		Measurement meteoData = new Measurement(newMeteoData.getMeasurementId(), newMeteoData.getHumidity(),
-				newMeteoData.getTemperature());
+				newMeteoData.getTemperature(), newMeteoData.getPressure(), newMeteoData.getAirQualityIndex());
 		repository.save(meteoData);
 
 		return newMeteoData;

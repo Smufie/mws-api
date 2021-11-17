@@ -1,25 +1,46 @@
 package mws.measurement;
 
+import java.time.LocalDateTime;
+
 public class MeasurementDTO {
 
 	private String stationId;
-	private String measurementDate;
+	private LocalDateTime measurementDate;
 	private long measurementId;
 	private float temperature;
 	private float humidity;
+	private int airQuality;
+	private float pressure;
 
 	public MeasurementDTO() {
 
 	}
 
-	public MeasurementDTO(String stationId, String measurementDate, long measurementId, float temperature,
-			float humidity) {
-		super();
+	public MeasurementDTO(String stationId, LocalDateTime measurementDate, long measurementId, float temperature,
+			float humidity, int airQuality, float pressure) {
 		this.stationId = stationId;
 		this.measurementDate = measurementDate;
 		this.measurementId = measurementId;
 		this.temperature = temperature;
 		this.humidity = humidity;
+		this.airQuality = airQuality;
+		this.pressure = pressure;
+	}
+
+	public int getAirQuality() {
+		return airQuality;
+	}
+
+	public void setAirQuality(int airQuality) {
+		this.airQuality = airQuality;
+	}
+
+	public float getPressure() {
+		return pressure;
+	}
+
+	public void setPressure(float pressure) {
+		this.pressure = pressure;
 	}
 
 	public String getStationId() {
@@ -30,11 +51,11 @@ public class MeasurementDTO {
 		this.stationId = stationId;
 	}
 
-	public String getMeasurementDate() {
+	public LocalDateTime getMeasurementDate() {
 		return measurementDate;
 	}
 
-	public void setMeasurementDate(String measurementDate) {
+	public void setMeasurementDate(LocalDateTime measurementDate) {
 		this.measurementDate = measurementDate;
 	}
 

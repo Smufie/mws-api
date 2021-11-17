@@ -1,5 +1,7 @@
 package mws.measurement;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,21 +11,41 @@ class Measurement {
 	private String _id;
 
 	private String stationId;
-	private String measurementDate;
+	private LocalDateTime measurementDate;
 	private long measurementId;
 	private float temperature;
 	private float humidity;
+	private int airQuality;
+	private float pressure;
 
 	public Measurement() {
 	}
 
-	public Measurement(String stationId, String measurementDate, long measurementId, float temperature,
-			float humidity) {
+	public Measurement(String stationId, LocalDateTime measurementDate, long measurementId, float temperature,
+			float humidity, int airQuality, float pressure) {
 		this.stationId = stationId;
 		this.measurementDate = measurementDate;
 		this.measurementId = measurementId;
 		this.temperature = temperature;
 		this.humidity = humidity;
+		this.airQuality = airQuality;
+		this.pressure = pressure;
+	}
+
+	public int getAirQuality() {
+		return airQuality;
+	}
+
+	public void setAirQuality(int airQuality) {
+		this.airQuality = airQuality;
+	}
+
+	public float getPressure() {
+		return pressure;
+	}
+
+	public void setPressure(float pressure) {
+		this.pressure = pressure;
 	}
 
 	public String getStationId() {
@@ -34,11 +56,11 @@ class Measurement {
 		this.stationId = stationId;
 	}
 
-	public String getMeasurementDate() {
+	public LocalDateTime getMeasurementDate() {
 		return measurementDate;
 	}
 
-	public void setMeasurementDate(String measurementDate) {
+	public void setMeasurementDate(LocalDateTime measurementDate) {
 		this.measurementDate = measurementDate;
 	}
 
@@ -75,8 +97,9 @@ class Measurement {
 	}
 
 	public MeasurementDTO translateToDto() {
+
 		MeasurementDTO dto = new MeasurementDTO(getStationId(), getMeasurementDate(), getMeasurementId(),
-				getTemperature(), getHumidity());
+				getTemperature(), getHumidity(), getAirQuality(), getPressure());
 		return dto;
 	}
 

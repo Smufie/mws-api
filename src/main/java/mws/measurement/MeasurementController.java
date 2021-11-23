@@ -26,13 +26,13 @@ public class MeasurementController {
 		return ResponseEntity.ok(service.getMeasurmentById(id));
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = { "https://mwsuserportal.herokuapp.com", "http://localhost:3000" })
 	@GetMapping("/measurements")
 	public ResponseEntity<List<MeasurementDTO>> getAllMeasurments() {
 		return ResponseEntity.ok(service.getAllMeasurments());
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@CrossOrigin(origins = { "https://mwsuserportal.herokuapp.com", "http://localhost:3000" })
 	@GetMapping("/measurements/{from}/{to}")
 	public ResponseEntity<List<MeasurementDTO>> getMeasurmentsByDate(@PathVariable String from, @PathVariable String to)
 			throws Exception {

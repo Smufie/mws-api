@@ -62,25 +62,19 @@ public class MeasurementDTO {
 	public long getMeasurementId() {
 		return measurementId;
 	}
-
 	public void setMeasurementId(long measurementId) {
 		this.measurementId = measurementId;
 	}
-
 	public float getTemperature() {
 		return temperature;
 	}
-
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
-
 	public float getHumidity() {
 		return humidity;
 	}
-
 	public void setHumidity(float humidity) {
 		this.humidity = humidity;
 	}
-
 }

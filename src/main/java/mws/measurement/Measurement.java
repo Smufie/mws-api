@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 class Measurement {
 	@Id
 	private String _id;
-
 	private String stationId;
 	private LocalDateTime measurementDate;
 	private long measurementId;
@@ -67,40 +66,47 @@ class Measurement {
 	public String get_id() {
 		return _id;
 	}
-
 	public void set_id(String _id) {
 		this._id = _id;
 	}
-
 	public long getMeasurementId() {
 		return measurementId;
 	}
-
 	public void setMeasurementId(long measurementId) {
 		this.measurementId = measurementId;
 	}
-
 	public float getHumidity() {
 		return humidity;
 	}
-
 	public void setHumidity(float humidity) {
 		this.humidity = humidity;
 	}
-
 	public float getTemperature() {
 		return temperature;
 	}
-
 	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
 
-	public MeasurementDTO translateToDto() {
+	public float getPressure() {
+		return pressure;
+	}
 
+	public void setPressure(float pressure) {
+		this.pressure = pressure;
+	}
+
+	public float getAirQualityIndex() {
+		return airQualityIndex;
+	}
+
+	public void setAirQualityIndex(float airQualityIndex) {
+		this.airQualityIndex = airQualityIndex;
+	}
+
+	public MeasurementDTO translateToDto() {
 		MeasurementDTO dto = new MeasurementDTO(getStationId(), getMeasurementDate(), getMeasurementId(),
 				getTemperature(), getHumidity(), getAirQuality(), getPressure());
 		return dto;
 	}
-
 }

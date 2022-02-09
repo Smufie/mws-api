@@ -1,5 +1,4 @@
 package mws.measurement;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,22 +6,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
 import com.mongodb.client.MongoClients;
 
 @Service
 class MeasurementService {
-
 	@Autowired
 	MeasurementRepository repository;
-
 	private final MongoTemplate template;
 	private final static String DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss";
 	private final static DateFormat FORMAT = new SimpleDateFormat(DATE_PATTERN);
@@ -42,7 +37,6 @@ class MeasurementService {
 		newMeteoData.setMeasurementDate(currentDate);
 		return newMeteoData;
 	}
-
 	public MeasurementDTO getMeasurmentById(float id) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("measurementId").is(id));
@@ -50,7 +44,6 @@ class MeasurementService {
 		MeasurementDTO measurementDTO = measurement.get(0).translateToDto();
 		return measurementDTO;
 	}
-
 	public List<MeasurementDTO> getAllMeasurments() {
 		List<Measurement> measurementsEntities = repository.findAll();
 		List<MeasurementDTO> measurementsDto = new ArrayList<MeasurementDTO>();

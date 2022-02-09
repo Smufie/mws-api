@@ -1,5 +1,7 @@
 package mws.measurement;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,22 +9,58 @@ import org.springframework.data.mongodb.core.mapping.Document;
 class Measurement {
 	@Id
 	private String _id;
+	private String stationId;
+	private LocalDateTime measurementDate;
 	private long measurementId;
-
-	private float humidity;
 	private float temperature;
+	private float humidity;
+	private int airQuality;
 	private float pressure;
-	private float airQualityIndex;
 
 	public Measurement() {
 	}
 
-	public Measurement(long measurementId, float humidity, float temperature, float pressure, float airQualityIndex) {
+	public Measurement(String stationId, LocalDateTime measurementDate, long measurementId, float temperature,
+			float humidity, int airQuality, float pressure) {
+		this.stationId = stationId;
+		this.measurementDate = measurementDate;
 		this.measurementId = measurementId;
-		this.humidity = humidity;
 		this.temperature = temperature;
+		this.humidity = humidity;
+		this.airQuality = airQuality;
 		this.pressure = pressure;
-		this.airQualityIndex = airQualityIndex;
+	}
+
+	public int getAirQuality() {
+		return airQuality;
+	}
+
+	public void setAirQuality(int airQuality) {
+		this.airQuality = airQuality;
+	}
+
+	public float getPressure() {
+		return pressure;
+	}
+
+	public void setPressure(float pressure) {
+		this.pressure = pressure;
+	}
+
+	public String getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(String stationId) {
+		this.stationId = stationId;
+	}
+
+	public LocalDateTime getMeasurementDate() {
+		return measurementDate;
+	}
+
+	public void setMeasurementDate(LocalDateTime measurementDate) {
+		this.measurementDate = measurementDate;
 	}
 
 	public String get_id() {
@@ -67,8 +105,8 @@ class Measurement {
 	}
 
 	public MeasurementDTO translateToDto() {
-		MeasurementDTO dto = new MeasurementDTO(getMeasurementId(), getTemperature(), getHumidity(), getPressure(), getAirQualityIndex());
+		MeasurementDTO dto = new MeasurementDTO(getStationId(), getMeasurementDate(), getMeasurementId(),
+				getTemperature(), getHumidity(), getAirQuality(), getPressure());
 		return dto;
 	}
-
 }
